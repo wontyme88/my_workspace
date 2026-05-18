@@ -1,0 +1,6 @@
+저장소 URL: https://github.com/wontyme88/wontyme_starterkit
+
+📦 Starter Kit 설명:
+- 기술 스택: Expo (React Native) + Supabase + Claude API (Anthropic SDK)
+- 주요 기능: iOS/Android/Web 동시 지원, Supabase 인증 및 실시간 DB 연동, Claude AI 일반 호출 및 스트리밍 응답
+- 용도: AI 기능이 포함된 모바일/웹 앱 빠른 프로토타이핑용 (친구들과 공유 및 설치 가능)
