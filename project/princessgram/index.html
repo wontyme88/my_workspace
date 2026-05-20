@@ -299,6 +299,330 @@
     .comment-name { font-weight: 600; font-size: 12px; color: #222; }
     .comment-text { font-size: 13px; color: #444; line-height: 1.5; }
     .comment-time { font-size: 10px; color: #bbb; margin-top: 2px; }
+    .comment-delete {
+      font-size: 10px; color: #ccc; cursor: pointer;
+      margin-left: 8px; font-weight: 500;
+      transition: color 0.15s;
+    }
+    .comment-delete:hover { color: #ec4899; }
+    .reply-btn {
+      background: none; border: none; color: #b08099;
+      font-size: 11px; padding: 2px 0; margin-top: 2px;
+      cursor: pointer; font-weight: 600;
+    }
+    .reply-btn:hover { color: #ec4899; }
+    .reply-input-wrap {
+      display: none; gap: 6px; margin: 6px 0 4px 36px;
+    }
+    .reply-input-wrap.open { display: flex; }
+    .reply-input-wrap input {
+      flex: 1; border: 1px solid #ffd6e8; border-radius: 16px;
+      padding: 6px 12px; font-size: 12px; outline: none;
+    }
+    .reply-input-wrap input:focus { border-color: #ec4899; }
+    .reply-input-wrap button {
+      background: #ec4899; color: #fff; border: none;
+      border-radius: 14px; padding: 4px 12px; font-size: 12px;
+      cursor: pointer; font-weight: 600;
+    }
+    .replies { margin-left: 36px; margin-top: 4px; }
+    .reply { display: flex; gap: 8px; margin-bottom: 6px; animation: fadeIn 0.4s ease; }
+    .reply .comment-avatar { width: 22px; height: 22px; }
+    .reply .comment-name { font-size: 11px; }
+    .reply .comment-text { font-size: 12px; }
+    .reply.me .comment-name { color: #ec4899; }
+
+    /* ── DM / Messenger (Instagram-style) ── */
+    .nav-badge {
+      position: absolute; top: 4px; right: calc(50% - 22px);
+      background: #ec4899; color: #fff; font-size: 10px;
+      min-width: 16px; height: 16px; padding: 0 4px;
+      border-radius: 8px; display: none;
+      align-items: center; justify-content: center; font-weight: 700;
+    }
+    .nav-badge.show { display: flex; }
+
+    /* DM list header (인스타 inbox 헤더) */
+    .dm-list-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px 8px;
+      border-bottom: 1px solid #efefef;
+      background: #fff;
+    }
+    .dm-list-header-title {
+      font-size: 16px; font-weight: 700; color: #262626;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .dm-list-header-icon {
+      font-size: 22px; color: #262626; cursor: pointer;
+      background: none; border: none; padding: 4px;
+    }
+    .dm-people-row {
+      display: flex; gap: 14px;
+      padding: 14px 16px 16px;
+      overflow-x: auto;
+      background: #fff;
+      border-bottom: 1px solid #efefef;
+    }
+    .dm-people-row::-webkit-scrollbar { display: none; }
+    .dm-person {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 6px; cursor: pointer; flex-shrink: 0;
+      width: 64px;
+    }
+    .dm-person-avatar {
+      width: 56px; height: 56px; border-radius: 50%;
+      overflow: hidden;
+      background: linear-gradient(135deg, #fda4af 0%, #f9a8d4 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 1.5px #ffc5db;
+    }
+    .dm-person-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .dm-person-name {
+      font-size: 11px; color: #262626;
+      max-width: 64px; overflow: hidden; text-overflow: ellipsis;
+      white-space: nowrap; text-align: center;
+    }
+    .dm-list-tabs {
+      display: flex; padding: 8px 16px; gap: 16px;
+      font-size: 14px; font-weight: 600;
+      border-bottom: 1px solid #efefef;
+      background: #fff;
+    }
+    .dm-list-tab {
+      padding: 6px 0; cursor: pointer; color: #8e8e8e;
+      border-bottom: 2px solid transparent;
+    }
+    .dm-list-tab.active { color: #262626; border-bottom-color: #262626; }
+
+    .dm-list { width: 100%; padding: 4px 0 100px; background: #fff; }
+    .dm-list-empty {
+      text-align: center; color: #8e8e8e; font-size: 14px;
+      padding: 80px 24px;
+      line-height: 1.6;
+    }
+    .dm-thread-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 8px 16px; cursor: pointer;
+      transition: background 0.12s;
+      background: #fff;
+    }
+    .dm-thread-item:hover { background: #fafafa; }
+    .dm-thread-item:active { background: #f0f0f0; }
+    .dm-thread-avatar {
+      width: 56px; height: 56px; border-radius: 50%;
+      overflow: hidden; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      background: linear-gradient(135deg, #fda4af 0%, #f9a8d4 100%);
+    }
+    .dm-thread-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .dm-thread-meta { flex: 1; min-width: 0; text-align: left; }
+    .dm-thread-name {
+      font-weight: 600; font-size: 14px; color: #262626;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .dm-thread-preview {
+      font-size: 14px; color: #8e8e8e; margin-top: 2px;
+      word-break: break-word;
+      line-height: 1.4;
+    }
+    .dm-thread-preview .preview-sep { color: #8e8e8e; margin: 0 4px; }
+    .dm-thread-preview .preview-sep { color: #8e8e8e; margin: 0 2px; }
+    .dm-thread-preview.unread { color: #262626; font-weight: 600; }
+    .dm-thread-right {
+      display: flex; flex-direction: column; align-items: flex-end;
+      gap: 4px; flex-shrink: 0;
+    }
+    .dm-unread-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #0095f6;
+    }
+    .dm-thread-camera {
+      font-size: 22px; color: #262626; cursor: pointer;
+    }
+    .dm-thread-delete {
+      background: linear-gradient(135deg, #ffe4ef, #ffd6e8);
+      border: 1px solid #ffc5db;
+      color: #d4548a;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: 14px; font-weight: 600;
+      box-shadow: 0 1px 3px rgba(236, 72, 153, 0.15);
+      transition: all 0.15s;
+    }
+    .dm-thread-delete:hover {
+      background: linear-gradient(135deg, #ffd0e3, #ffb6cd);
+      transform: scale(1.08);
+      box-shadow: 0 2px 6px rgba(236, 72, 153, 0.25);
+    }
+    .dm-thread-delete:active { transform: scale(0.95); }
+
+    /* DM 채팅 뷰 */
+    .dm-chat {
+      display: none; flex-direction: column;
+      flex: 1; width: 100%; min-height: 0;
+      background: #fff;
+    }
+    .dm-chat.open { display: flex; }
+    .dm-chat-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 14px;
+      border-bottom: 1px solid #efefef;
+      background: #fff;
+      position: sticky; top: 0; z-index: 10;
+    }
+    .dm-chat-back {
+      background: none; border: none; font-size: 24px;
+      color: #262626; cursor: pointer; padding: 0 4px;
+      line-height: 1;
+    }
+    .dm-chat-avatar-wrap {
+      display: flex; align-items: center; gap: 10px;
+      flex: 1; min-width: 0;
+    }
+    .dm-chat-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      overflow: hidden; flex-shrink: 0;
+      background: linear-gradient(135deg, #fda4af 0%, #f9a8d4 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .dm-chat-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .dm-chat-name-wrap { display: flex; flex-direction: column; min-width: 0; }
+    .dm-chat-name {
+      font-weight: 600; font-size: 15px; color: #262626;
+      line-height: 1.2;
+    }
+    .dm-chat-status {
+      font-size: 11px; color: #8e8e8e; line-height: 1.2;
+    }
+    .dm-chat-actions {
+      display: flex; gap: 14px; align-items: center;
+      font-size: 22px; color: #262626;
+    }
+    .dm-chat-actions span { cursor: pointer; }
+
+    /* 상단 프로필 (인스타: 아바타 + 이름 + 프로필 보기) */
+    .dm-chat-profile-card {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 24px 16px 16px;
+      background: #fff;
+    }
+    .dm-chat-profile-card .pc-avatar {
+      width: 88px; height: 88px; border-radius: 50%;
+      overflow: hidden; margin-bottom: 12px;
+      background: linear-gradient(135deg, #fda4af 0%, #f9a8d4 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 44px;
+    }
+    .dm-chat-profile-card .pc-avatar img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .dm-chat-profile-card .pc-name {
+      font-size: 20px; font-weight: 600; color: #262626;
+      margin-bottom: 4px;
+    }
+    .dm-chat-profile-card .pc-username {
+      font-size: 13px; color: #8e8e8e; margin-bottom: 14px;
+    }
+    .dm-chat-profile-card .pc-view-btn {
+      background: #efefef; color: #262626;
+      border: none; padding: 7px 16px;
+      border-radius: 8px; font-size: 13px; font-weight: 600;
+      cursor: pointer;
+    }
+    .dm-chat-profile-card .pc-view-btn:hover { background: #dbdbdb; }
+
+    .dm-messages {
+      flex: 1; overflow-y: auto;
+      padding: 8px 12px 8px;
+      display: flex; flex-direction: column; gap: 2px;
+      background: #fff;
+    }
+    .dm-msg-row {
+      display: flex; align-items: flex-end; gap: 6px;
+      margin: 1px 0;
+    }
+    .dm-msg-row.me { justify-content: flex-end; }
+    .dm-msg-row.them { justify-content: flex-start; }
+    .dm-msg-row-avatar {
+      width: 28px; height: 28px; border-radius: 50%;
+      overflow: hidden; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      background: linear-gradient(135deg, #fda4af 0%, #f9a8d4 100%);
+      align-self: flex-end;
+      margin-bottom: 2px;
+    }
+    .dm-msg-row-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .dm-msg-row-avatar.hidden { visibility: hidden; }
+    .dm-msg {
+      max-width: 70%; padding: 9px 13px;
+      border-radius: 22px; font-size: 14px;
+      line-height: 1.35; word-break: break-word;
+      animation: fadeIn 0.25s ease;
+    }
+    .dm-msg.them {
+      background: #efefef; color: #262626;
+    }
+    .dm-msg.me {
+      background: linear-gradient(135deg, #ec4899, #f472b6);
+      color: #fff;
+    }
+    /* 같은 사람이 연속 메시지 보낼 때 모서리 조절 */
+    .dm-msg.them.has-prev { border-top-left-radius: 6px; }
+    .dm-msg.them.has-next { border-bottom-left-radius: 6px; }
+    .dm-msg.me.has-prev { border-top-right-radius: 6px; }
+    .dm-msg.me.has-next { border-bottom-right-radius: 6px; }
+
+    .dm-msg-divider {
+      text-align: center;
+      font-size: 11px; color: #8e8e8e;
+      padding: 16px 0 8px;
+      font-weight: 600;
+    }
+
+    .dm-input-bar {
+      position: sticky; bottom: 0;
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 12px 10px;
+      background: #fff;
+      border-top: 1px solid #efefef;
+    }
+    .dm-input-wrap {
+      flex: 1;
+      display: flex; align-items: center; gap: 8px;
+      border: 1px solid #dbdbdb; border-radius: 22px;
+      padding: 6px 6px 6px 14px;
+      transition: border-color 0.15s;
+    }
+    .dm-input-wrap:focus-within { border-color: #a8a8a8; }
+    .dm-input-wrap input {
+      flex: 1; border: none; outline: none;
+      font-size: 14px; background: transparent;
+      padding: 4px 0;
+    }
+    .dm-input-emoji {
+      background: none; border: none; font-size: 18px;
+      cursor: pointer; padding: 4px;
+    }
+    .dm-input-send {
+      background: none; color: #0095f6;
+      border: none; padding: 4px 8px;
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      display: none;
+    }
+    .dm-input-send.show { display: block; }
+    .dm-input-actions {
+      display: flex; gap: 12px; align-items: center;
+      font-size: 22px; color: #262626;
+    }
+    .dm-input-actions span { cursor: pointer; }
 
     .typing-indicator {
       display: flex;
@@ -326,6 +650,15 @@
     .post-border { border-bottom: 1px solid #ffe4ef; }
 
     /* ── Bottom Nav ── */
+    body.dm-chat-open .bottom-nav { display: none; }
+    body.dm-chat-open .messenger-page { padding-bottom: 0; }
+    body.dm-chat-open { overflow: hidden; }
+    body.dm-chat-open .app {
+      height: 100vh;
+      max-height: 100vh;
+      min-height: 100vh;
+      overflow: hidden;
+    }
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -409,11 +742,19 @@
       flex: 1;
       display: none;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px 100px;
+      padding: 0;
       color: #c06090;
+      overflow: hidden;
+      min-height: 0;
+    }
+    .messenger-page #dmListView {
+      flex: 1; overflow-y: auto;
+      display: flex; flex-direction: column;
+    }
+    .messenger-page #dmListView .dm-list { flex: 1; }
+    .messenger-page .placeholder-empty {
       text-align: center;
+      padding: 60px 20px;
     }
     .messenger-page.open { display: flex; }
     .messenger-page .icon { font-size: 60px; margin-bottom: 12px; }
@@ -673,8 +1014,6 @@
     <div class="header-logo">princess time</div>
     <div class="header-icons">
       <span style="cursor:pointer" onclick="openSettings()">⚙️</span>
-      <span>💌</span>
-      <span>🔔</span>
     </div>
   </header>
 
@@ -717,12 +1056,6 @@
       </div>
       <span class="story-name">pearl_diary</span>
     </div>
-    <div class="story" style="cursor:pointer;" onclick="goCharacterProfile('curse_princess')">
-      <div class="story-ring">
-        <div class="story-avatar"><img src="assets/curse.png" alt="curse_princess" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'🔮'}))"></div>
-      </div>
-      <span class="story-name">curse_princess</span>
-    </div>
   </div>
 
   <!-- Write Box -->
@@ -762,11 +1095,42 @@
   </div>
   </div><!-- /#homePage -->
 
-  <!-- Messenger Page (placeholder) -->
+  <!-- Messenger Page (Instagram DM style) -->
   <div class="messenger-page" id="messengerPage">
-    <div class="icon">💬</div>
-    <h2>메신저</h2>
-    <p>공주 캐릭터들과의 메신저 기능은 곧 만나요 🌸</p>
+    <!-- Inbox 리스트 뷰 -->
+    <div id="dmListView" style="width:100%;">
+      <div class="dm-people-row" id="dmPeopleRow"></div>
+      <div class="dm-list-tabs">
+        <div class="dm-list-tab active">메시지</div>
+        <div class="dm-list-tab">요청</div>
+      </div>
+      <div class="dm-list" id="dmList"></div>
+    </div>
+
+    <!-- 채팅 뷰 -->
+    <div class="dm-chat" id="dmChatView">
+      <div class="dm-chat-header">
+        <button class="dm-chat-back" onclick="closeDMChat()" aria-label="뒤로">←</button>
+        <div class="dm-chat-avatar-wrap" onclick="openCharacterProfileFromDM()">
+          <div class="dm-chat-avatar" id="dmChatAvatar"></div>
+          <div class="dm-chat-name-wrap">
+            <div class="dm-chat-name" id="dmChatName"></div>
+            <div class="dm-chat-status">활동 중</div>
+          </div>
+        </div>
+        <div class="dm-chat-actions">
+          <span title="정보" aria-label="정보">ⓘ</span>
+        </div>
+      </div>
+      <div class="dm-messages" id="dmMessages"></div>
+      <div class="dm-input-bar">
+        <span class="dm-input-emoji" onclick="openEmojiPickerForDM()" title="이모티콘">😊</span>
+        <div class="dm-input-wrap">
+          <input type="text" id="dmInput" placeholder="메시지 입력..." oninput="onDMInputChange()" onkeydown="if(event.key==='Enter')sendUserDM()">
+          <button class="dm-input-send show" id="dmInputSend" onclick="sendUserDM()">보내기</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Profile Page (Instagram-style view) -->
@@ -860,8 +1224,9 @@
 
   <!-- Bottom Nav -->
   <nav class="bottom-nav">
-    <button class="nav-btn" onclick="goMessenger()" aria-label="메신저">
+    <button class="nav-btn" onclick="goMessenger()" aria-label="메신저" style="position:relative;">
       <svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></svg>
+      <span class="nav-badge" id="dmNavBadge">0</span>
     </button>
     <button class="nav-btn home" onclick="goHome()" aria-label="홈">
       <svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
@@ -1019,14 +1384,9 @@
       const data = await res.json();
       let out = (data.choices?.[0]?.message?.content || '').trim();
       out = out.replace(/^["'`「」]+|["'`「」]+$/g, '').trim();
-      if (char.id === 'curse_princess') {
-        const ok = /기운이 (느껴져|흐려져)/.test(out) && /킄크크\s*$/.test(out) && out.length <= 90;
-        if (!ok) return null;
-      } else {
-        const lines = out.split(/\n+/).slice(0, 2);
-        out = lines.join('\n');
-        if (out.length > 80) out = out.slice(0, 80).replace(/\s+\S*$/, '') + '…';
-      }
+      const lines = out.split(/\n+/).slice(0, 2);
+      out = lines.join('\n');
+      if (out.length > 80) out = out.slice(0, 80).replace(/\s+\S*$/, '') + '…';
       return out || null;
     } catch (e) {
       console.warn('OpenAI 호출 실패, 템플릿 폴백:', e);
@@ -1037,7 +1397,7 @@
   // ── NEW: 친구다운 자연스러운 반응 댓글 ──
   const CHARACTERS = [
     {
-      id: 'ruby_', emoji: '💎', img: 'assets/ruby.png', bg: 'linear-gradient(135deg,#fda4af,#f43f5e)',
+      id: 'ruby_', emoji: '💎', img: 'assets/ruby_/ruby_profile/ruby.png', bg: 'linear-gradient(135deg,#fda4af,#f43f5e)',
       delay: () => rand(1, 3),
       systemPrompt: `너는 'ruby_'라는 활발하고 에너지 넘치는 20대 공주 캐릭터야. 친구 'princess_chae'의 일기에 댓글을 남기는 상황이야.
 [말투] 매우 캐주얼하고 친근함. 'ㅋㅋ', 'ㅠㅠ' 자주 사용. 💎✨🎀 같은 이모지 1-2개 섞기. 느낌표 많이.
@@ -1067,7 +1427,7 @@
       ]
     },
     {
-      id: 'lily_princess', emoji: '🌸', img: 'assets/lily.png', bg: 'linear-gradient(135deg,#fbcfe8,#ec4899)',
+      id: 'lily_princess', emoji: '🌸', img: 'assets/lily_/lily_profile/lily.png', bg: 'linear-gradient(135deg,#fbcfe8,#ec4899)',
       delay: () => rand(2, 4),
       systemPrompt: `너는 'lily_princess'라는 다정하고 따뜻한 20대 공주 캐릭터야. 친구 'princess_chae'의 일기에 댓글을 남기는 상황이야.
 [말투] 부드럽고 다정함. 🌸🥺💕🌷 같은 이모지 1-2개 섞기. 'ㅠ', 'ㅎㅎ' 가끔 사용.
@@ -1097,7 +1457,7 @@
       ]
     },
     {
-      id: 'sora_diary', emoji: '🌙', img: 'assets/sora.png', bg: 'linear-gradient(135deg,#c4b5fd,#8b5cf6)',
+      id: 'sora_diary', emoji: '🌙', img: 'assets/sora_/sora_profile/sora.png', bg: 'linear-gradient(135deg,#c4b5fd,#8b5cf6)',
       delay: () => rand(2, 5),
       systemPrompt: `너는 'sora_diary'라는 사려깊고 공감력 높은 20대 공주 캐릭터야. 친구 'princess_chae'의 일기에 댓글을 남기는 상황이야.
 [말투] 차분하고 진지함. 🌙💜✨ 이모지 1개 정도. 위로하는 어조이지만 끈적하지 않음.
@@ -1124,7 +1484,7 @@
       negativePool: []
     },
     {
-      id: 'momo__o', emoji: '🍑', img: 'assets/momo.png', bg: 'linear-gradient(135deg,#fed7aa,#f97316)',
+      id: 'momo__o', emoji: '🍑', img: 'assets/momo_/momo_profile/momo.png', bg: 'linear-gradient(135deg,#fed7aa,#f97316)',
       delay: () => rand(1, 4),
       systemPrompt: `너는 'momo__o'라는 유머러스하고 솔직한 20대 공주 캐릭터야. 친구 'princess_chae'의 일기에 댓글을 남기는 상황이야.
 [말투] 캐주얼하고 웃김. 'ㅋㅋㅋ' 자주, 🍑 이모지 가끔. 친구한테 농담하듯 편하게.
@@ -1155,7 +1515,7 @@
       ]
     },
     {
-      id: 'pearl_diary', emoji: '🦢', img: 'assets/pearl.png', bg: 'linear-gradient(135deg,#e2e8f0,#94a3b8)',
+      id: 'pearl_diary', emoji: '🦢', img: 'assets/pearl_/pearl_profile/pearl.png', bg: 'linear-gradient(135deg,#e2e8f0,#94a3b8)',
       delay: () => rand(3, 5),
       systemPrompt: `너는 'pearl_diary'라는 우아하고 지혜로운 20대 공주 캐릭터야. 친구 'princess_chae'의 일기에 댓글을 남기는 상황이야.
 [말투] 차분하고 격조 있음. 🦢 이모지 가끔. 'ㅋㅋ' 거의 안 씀. 정제된 친구 톤.
@@ -1184,44 +1544,475 @@
         "냉정하게 말하면 받아들이는 사람 마음이기도 해🦢 너무 크게 볼 필요 없어 보여",
         "음... 그 선택이 최선이었는지 한 번 다시 생각해볼 여지가 있을 것 같아🦢"
       ]
-    },
-    {
-      id: 'curse_princess', emoji: '🔮', img: 'assets/curse.png', bg: 'linear-gradient(135deg,#a78bfa,#6d28d9)',
-      delay: () => rand(3, 6),
-      systemPrompt: `너는 'curse_princess', 점쟁이 같은 몽환적 공주 캐릭터다.
-반드시 아래 한 줄 포맷으로만 말한다. 다른 형식 절대 금지.
-
-포맷: "{영역}의 기운이 느껴져… 그럴 땐 {추천 행동}을 해봐… 킄크크"
-
-- {영역}: "건강/사랑/학업/재물" 중 일기와 사용자 사주 분위기에 가장 어울리는 하나.
-- {추천 행동}: 사용자 사주(별자리·시진·MBTI)와 영역에 어울리는 짧고 구체적인 행동. 예: "오늘 밤 창문을 잠깐 열어두는 일", "은빛 액세서리를 손에 쥐는 일".
-- 한 줄, 70자 이내. 줄바꿈/따옴표/이모지 금지. 반드시 "킄크크"로 끝낼 것.`,
-      reactions: {
-        default: [
-          "건강의 기운이 느껴져… 그럴 땐 따뜻한 물을 한 잔 천천히 마셔봐… 킄크크",
-          "건강의 기운이 느껴져… 그럴 땐 창문을 잠깐 열어 바람을 들여봐… 킄크크",
-          "건강의 기운이 느껴져… 그럴 땐 자기 전에 발을 5분만 주물러봐… 킄크크",
-          "건강의 기운이 느껴져… 그럴 땐 오늘은 단 음식을 한 번만 참아봐… 킄크크",
-          "사랑의 기운이 느껴져… 그럴 땐 분홍색 무언가를 가까이 둬봐… 킄크크",
-          "사랑의 기운이 느껴져… 그럴 땐 오래 미뤘던 안부 한 줄을 보내봐… 킄크크",
-          "사랑의 기운이 느껴져… 그럴 땐 거울 앞에서 한 번 살짝 웃어봐… 킄크크",
-          "사랑의 기운이 느껴져… 그럴 땐 오늘 밤 창가 쪽으로 자봐… 킄크크",
-          "학업의 기운이 느껴져… 그럴 땐 책상 위 작은 초를 켜봐… 킄크크",
-          "학업의 기운이 느껴져… 그럴 땐 푸른색 펜으로 한 줄 적어봐… 킄크크",
-          "학업의 기운이 느껴져… 그럴 땐 아침 7시 전에 5분만 책을 펴봐… 킄크크",
-          "학업의 기운이 느껴져… 그럴 땐 동쪽 창가에서 잠깐 생각을 정리해봐… 킄크크",
-          "재물의 기운이 느껴져… 그럴 땐 동전 한 닢을 지갑 깊숙이 넣어둬봐… 킄크크",
-          "재물의 기운이 느껴져… 그럴 땐 지갑 속을 한 번 정리해봐… 킄크크",
-          "재물의 기운이 느껴져… 그럴 땐 노란색 무언가를 가까이 둬봐… 킄크크",
-          "재물의 기운이 느껴져… 그럴 땐 오늘 하나는 사지 말고 미뤄봐… 킄크크"
-        ]
-      },
-      negativePool: [
-        "건강의 기운이 흐려져… 그럴 땐 오늘은 무리하지 말고 일찍 쉬어봐… 킄크크",
-        "재물의 기운이 흐려져… 그럴 땐 오늘은 큰 결제를 미뤄봐… 킄크크"
-      ]
     }
   ];
+
+  // ── 캐릭터별 답글/DM 성격 프로필 ──
+  // inlineReplyChance: 댓글창에서 바로 답글 달 확률 (1 - p = DM으로 이어짐)
+  const REPLY_PROFILES = {
+    ruby_: {
+      inlineReplyChance: 0.55,
+      tone: '장난스럽고 약간 질투. 친구가 자기보다 다른 데 신경 쓰면 삐친 척. "ㅋㅋ", 느낌표 많음, 💎',
+      inlineTemplates: [
+        "야 너 답글 보고 혼자 웃었잖아ㅋㅋ💎",
+        "오 답장 빠르네?? 나한테 더 빨리 해줘야 됨💎",
+        "ㅋㅋㅋ 뭐야 그게 다야?? 더 얘기해줘💎",
+        "흠… 나만 너한테 진심인 거 같은데?ㅋㅋ💎",
+        "야 솔직히 말해 누가 더 좋아??💎"
+      ],
+      dmTemplates: [
+        "야 아까 그 댓글 뭐야ㅋㅋ 너 답글 보고 혼자 웃었어💎",
+        "질투난 거 아니지? 🤍 …아니다 좀 났어ㅋㅋ💎",
+        "야 솔직히 너 요즘 누구한테 제일 잘해줘?? 나야 나?💎",
+        "DM으로 말해야 할 것 같아서ㅋㅋ 아까 그 일 더 얘기해줘💎"
+      ]
+    },
+    sora_diary: {
+      inlineReplyChance: 0.35,
+      tone: '차분하지만 은근히 신경 쓰임. 단답·여운, 🌙',
+      inlineTemplates: [
+        "응… 알겠어🌙 잘 읽었어",
+        "그렇구나… 생각해볼게🌙",
+        "음, 네 답글 보고 잠깐 생각이 많아졌어🌙",
+        "조용히 응원하고 있어🌙"
+      ],
+      dmTemplates: [
+        "아까 답글 보고 생각이 좀 많아져서… DM 보내🌙",
+        "댓글창에선 못 한 말이 있는데, 너 진짜 괜찮은 거 맞아?🌙",
+        "별 거 아닌데 그냥… 너 잘 지내라고 말하고 싶었어🌙",
+        "혹시 시간 되면 우리 둘이 얘기 좀 할 수 있을까🌙"
+      ]
+    },
+    lily_princess: {
+      inlineReplyChance: 0.6,
+      tone: '다정하고 순수. 작은 거에도 진심으로 반응, 🌸🥺',
+      inlineTemplates: [
+        "어머 답글 고마워🌸 마음 따뜻해졌어🥺",
+        "이렇게 답해줘서 기뻐🌸 진짜로💕",
+        "공주님 답글 보고 미소 지어졌어🥺🌸",
+        "응응 들었어🌸 진짜 응원하는 거 알지?💕"
+      ],
+      dmTemplates: [
+        "공주님🌸 아까 답글 읽고 한 번 더 마음 쓰여서 DM 보내🥺",
+        "혹시 지금 괜찮아?🌸 너 생각이 자꾸 나서…💕",
+        "댓글로는 못 한 말인데, 너 정말 잘하고 있어🥺🌸",
+        "그냥 응원한다고 한 번 더 말해주고 싶었어🌷"
+      ]
+    },
+    pearl_diary: {
+      inlineReplyChance: 0.25,
+      tone: '무심한 척하지만 은근히 관심. 짧고 시크, 🦢',
+      inlineTemplates: [
+        "…응 봤어🦢",
+        "그래, 알겠어🦢",
+        "음. 답글 잘 봤어🦢",
+        "어… 그렇다고? 흠🦢"
+      ],
+      dmTemplates: [
+        "별 거 아닌데… 아까 답글 신경 쓰여서🦢",
+        "댓글로 길게 말하긴 그래서. 너 진짜 괜찮은 거지?🦢",
+        "관심 있어서가 아니라 그냥… 확인하는 거야🦢",
+        "혹시 답장 안 해도 돼. 그냥 보고 싶어서 보내🦢"
+      ]
+    },
+    momo__o: {
+      inlineReplyChance: 0.5,
+      tone: '먹는 걸로 풀고 같이 놀고 싶어함, 🍑',
+      inlineTemplates: [
+        "야 답글 받았다ㅋㅋ 우리 뭐 먹으러 가자🍑",
+        "오케이오케이 알겠어🍑 다음에 같이 놀자!!",
+        "ㅋㅋㅋ 너 답글 귀엽다🍑"
+      ],
+      dmTemplates: [
+        "아까 댓글 보고 갑자기 너랑 떡볶이 먹고 싶어졌어🍑",
+        "야 우리 언제 만나?? DM으로 약속 잡자🍑",
+        "답글 보다가 배고파짐ㅋㅋ 같이 먹자🍑"
+      ]
+    }
+  };
+  // 캐릭터 객체에 프로필 주입
+  CHARACTERS.forEach(c => { c.replyProfile = REPLY_PROFILES[c.id]; });
+
+  function pickReplyTemplate(char, userReplyText) {
+    const arr = char.replyProfile?.inlineTemplates || ["응 잘 봤어"];
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+  function pickDMTemplate(char) {
+    const arr = char.replyProfile?.dmTemplates || ["DM 보내봤어"];
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  async function generateCommentReply(char, postText, userReply) {
+    const apiKey = localStorage.getItem('openai_api_key');
+    if (!apiKey || !char.systemPrompt) return null;
+    const tone = char.replyProfile?.tone || '';
+    const sys = char.systemPrompt + `\n[추가 지시 — 답글 모드]\n친구 princess_chae가 너의 댓글에 직접 답글을 달았어. 너는 그 답글에 다시 짧게 반응해. 톤: ${tone}\n- 한 줄, 최대 50자\n- 따옴표 금지, 일기 내용 직접 인용 금지\n- 답글에 자연스럽게 반응 (놀라움/장난/공감/시크함 등 캐릭터 성격대로)`;
+    try {
+      const res = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+        body: JSON.stringify({
+          model: 'gpt-4o-mini',
+          messages: [
+            { role: 'system', content: sys },
+            { role: 'user', content: `원래 일기: "${postText}"\n네가 단 댓글에 princess_chae가 답한 답글: "${userReply}"\n위 답글에 다시 반응하는 답글을 써. 본문만.` }
+          ],
+          temperature: 0.95,
+          max_tokens: 60
+        })
+      });
+      if (!res.ok) return null;
+      const data = await res.json();
+      let out = (data.choices?.[0]?.message?.content || '').trim().replace(/^["'`「」]+|["'`「」]+$/g,'');
+      if (out.length > 60) out = out.slice(0, 60).replace(/\s+\S*$/, '') + '…';
+      return out || null;
+    } catch (e) { return null; }
+  }
+
+  async function generateDMOpener(char, ctx) {
+    const apiKey = localStorage.getItem('openai_api_key');
+    if (!apiKey || !char.systemPrompt) return null;
+    const tone = char.replyProfile?.tone || '';
+    const sys = char.systemPrompt + `\n[추가 지시 — DM 모드]\n너는 지금 친구 princess_chae에게 개인 메시지(DM)를 먼저 보내. 댓글창에서 못 한 말, 또는 은근히 마음 쓰이는 부분을 따로 전하는 상황. 톤: ${tone}\n- 1~2개 짧은 메시지 (각 한 줄, 최대 50자)\n- 줄바꿈으로 구분\n- "아까 그 댓글", "답글 보고", "DM으로" 같은 자연스러운 도입 사용 가능\n- 따옴표 금지, 일기 인용 금지`;
+    try {
+      const res = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+        body: JSON.stringify({
+          model: 'gpt-4o-mini',
+          messages: [
+            { role: 'system', content: sys },
+            { role: 'user', content: `원래 일기: "${ctx.postText}"\nprincess_chae가 단 답글: "${ctx.userReply}"\n이 상황에서 너가 먼저 DM을 보내. 본문만.` }
+          ],
+          temperature: 0.95,
+          max_tokens: 100
+        })
+      });
+      if (!res.ok) return null;
+      const data = await res.json();
+      const raw = (data.choices?.[0]?.message?.content || '').trim();
+      const lines = raw.split(/\n+/).map(s => s.replace(/^["'`「」]+|["'`「」]+$/g,'').trim()).filter(Boolean).slice(0, 2);
+      return lines.length ? lines : null;
+    } catch (e) { return null; }
+  }
+
+  // ── DM state ──
+  const DM_THREADS = {}; // charId -> { messages: [{from, text, ts}], unread: number }
+  function getThread(charId) {
+    if (!DM_THREADS[charId]) DM_THREADS[charId] = { messages: [], unread: 0 };
+    return DM_THREADS[charId];
+  }
+  function totalUnread() {
+    return Object.values(DM_THREADS).reduce((s,t) => s + (t.unread || 0), 0);
+  }
+  function updateDMBadge() {
+    const b = document.getElementById('dmNavBadge');
+    if (!b) return;
+    const n = totalUnread();
+    if (n > 0) { b.textContent = n > 9 ? '9+' : String(n); b.classList.add('show'); }
+    else { b.classList.remove('show'); }
+  }
+
+  async function sendDMFromChar(char, ctx) {
+    console.log('[dm] sendDMFromChar', char.id, ctx);
+    const thread = getThread(char.id);
+    let lines;
+    try { lines = await generateDMOpener(char, ctx); }
+    catch (e) { console.warn('[dm] gen err', e); }
+    if (!lines || !lines.length) lines = [pickDMTemplate(char)];
+    console.log('[dm] lines:', lines);
+    lines.forEach((text, i) => {
+      setTimeout(() => {
+        thread.messages.push({ from: 'them', text, ts: Date.now() });
+        // 현재 열린 채팅이면 즉시 렌더, 아니면 unread+
+        if (_openDMCharId === char.id) {
+          appendDMBubble('them', text);
+        } else {
+          thread.unread++;
+          updateDMBadge();
+        }
+        // 메신저 목록이 열려있으면 갱신
+        if (document.getElementById('messengerPage').classList.contains('open')
+            && document.getElementById('dmListView').style.display !== 'none') {
+          renderDMList();
+        }
+        showDMToast(char);
+        persistState();
+      }, i * 1200);
+    });
+  }
+
+  function showDMToast(char) {
+    if (document.getElementById('messengerPage').classList.contains('open')) return;
+    showToast(`💌 ${char.id} 님이 메시지를 보냈어요`);
+  }
+
+  // ── DM UI ──
+  let _openDMCharId = null;
+
+  function renderDMList() {
+    renderDMPeopleRow();
+    const list = document.getElementById('dmList');
+    if (!list) return;
+    const ids = Object.keys(DM_THREADS).filter(id => DM_THREADS[id].messages.length > 0);
+    if (!ids.length) {
+      list.innerHTML = `<div class="dm-list-empty">아직 받은 메시지가 없어요 🌸<br><br>댓글에 답글을 달다 보면<br>친구들이 DM을 보낼지도 몰라요 💌</div>`;
+      return;
+    }
+    ids.sort((a,b) => {
+      const la = DM_THREADS[a].messages.at(-1).ts;
+      const lb = DM_THREADS[b].messages.at(-1).ts;
+      return lb - la;
+    });
+    list.innerHTML = ids.map(id => {
+      const char = findChar(id);
+      if (!char) return '';
+      const thread = DM_THREADS[id];
+      const last = thread.messages.at(-1);
+      const preview = escHtml(last.text);
+      const isUnread = thread.unread > 0;
+      const timeStr = relativeTime(last.ts);
+      const fromMe = last.from === 'me';
+      const previewPrefix = fromMe ? '회원님: ' : '';
+      return `
+        <div class="dm-thread-item" onclick="openDMChat('${id}')">
+          <div class="dm-thread-avatar"><img src="${char.img}" alt="${id}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'${char.emoji}'}))"></div>
+          <div class="dm-thread-meta">
+            <div class="dm-thread-name">${char.id}</div>
+            <div class="dm-thread-preview ${isUnread ? 'unread' : ''}">${previewPrefix}${preview} <span class="preview-sep">·</span> ${timeStr}</div>
+          </div>
+          <div class="dm-thread-right">
+            ${isUnread ? '<span class="dm-unread-dot"></span>' : ''}
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function renderDMPeopleRow() {
+    const row = document.getElementById('dmPeopleRow');
+    if (!row) return;
+    row.innerHTML = CHARACTERS.map(c => `
+      <div class="dm-person" onclick="startDMWith('${c.id}')" title="${c.id}">
+        <div class="dm-person-avatar"><img src="${c.img}" alt="${c.id}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'${c.emoji}'}))"></div>
+        <div class="dm-person-name">${c.id}</div>
+      </div>
+    `).join('');
+  }
+
+  function startDMWith(charId) {
+    const char = findChar(charId);
+    if (!char) return;
+    getThread(charId); // 빈 스레드 보장
+    openDMChat(charId);
+  }
+
+  function deleteDMThread(charId) {
+    const char = findChar(charId);
+    const name = char ? char.id : charId;
+    if (!confirm(`${name} 님과의 대화를 삭제할까요? 💌\n주고받은 메시지가 모두 사라져요.`)) return;
+    delete DM_THREADS[charId];
+    if (_openDMCharId === charId) closeDMChat();
+    renderDMList();
+    updateDMBadge();
+    persistState();
+    showToast('대화가 삭제됐어요 🌸');
+  }
+
+  function relativeTime(ts) {
+    const d = Math.floor((Date.now() - ts) / 1000);
+    if (d < 60) return '방금';
+    if (d < 3600) return Math.floor(d/60) + '분';
+    if (d < 86400) return Math.floor(d/3600) + '시간';
+    return Math.floor(d/86400) + '일';
+  }
+
+  function openCharacterProfileFromDM() {
+    if (!_openDMCharId) return;
+    const charId = _openDMCharId;
+    closeDMChat();
+    hideAllPages();
+    document.body.classList.remove('dm-chat-open');
+    if (typeof goCharacterProfile === 'function' && CHARACTER_PROFILES[charId]) {
+      goCharacterProfile(charId);
+    } else {
+      showToast('프로필을 찾을 수 없어요 🥲');
+    }
+  }
+
+  function onDMInputChange() {
+    // 보내기 버튼은 항상 표시
+  }
+
+  function sendQuickHeart() {
+    if (!_openDMCharId) return;
+    const input = document.getElementById('dmInput');
+    input.value = '❤️';
+    sendUserDM();
+  }
+
+  function openEmojiPickerForDM() {
+    const input = document.getElementById('dmInput');
+    if (input) {
+      input.value += '🌸';
+      input.focus();
+      onDMInputChange();
+    }
+  }
+
+  function openDMChat(charId) {
+    const char = findChar(charId);
+    if (!char) return;
+    _openDMCharId = charId;
+    const thread = getThread(charId);
+    thread.unread = 0;
+    updateDMBadge();
+
+    document.getElementById('dmListView').style.display = 'none';
+    document.getElementById('dmChatView').classList.add('open');
+    document.body.classList.add('dm-chat-open');
+    document.getElementById('dmChatName').textContent = char.id;
+    document.getElementById('dmChatAvatar').innerHTML = `<img src="${char.img}" alt="${charId}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'${char.emoji}'}))">`;
+
+    // 채팅 본문 재구성: 상단 프로필 카드 + 그룹화된 메시지
+    const box = document.getElementById('dmMessages');
+    box.innerHTML = `
+      <div class="dm-chat-profile-card">
+        <div class="pc-avatar"><img src="${char.img}" alt="${char.id}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'${char.emoji}'}))"></div>
+        <div class="pc-name">${char.id}</div>
+        <div class="pc-username">${char.id} · Princessgram</div>
+        <button class="pc-view-btn" onclick="openCharacterProfileFromDM()">프로필 보기</button>
+      </div>
+    `;
+    rerenderDMMessages();
+    // 입력창 초기화
+    const input = document.getElementById('dmInput');
+    if (input) { input.value = ''; onDMInputChange(); }
+    setTimeout(() => { box.scrollTop = box.scrollHeight; }, 0);
+  }
+
+  function rerenderDMMessages() {
+    const box = document.getElementById('dmMessages');
+    if (!box || !_openDMCharId) return;
+    const char = findChar(_openDMCharId);
+    const thread = getThread(_openDMCharId);
+    // 기존 메시지 영역만 제거하고 프로필 카드는 유지
+    const card = box.querySelector('.dm-chat-profile-card');
+    box.innerHTML = '';
+    if (card) box.appendChild(card);
+
+    let lastDayKey = null;
+    thread.messages.forEach((m, i) => {
+      const dayKey = new Date(m.ts).toDateString();
+      if (dayKey !== lastDayKey) {
+        const div = document.createElement('div');
+        div.className = 'dm-msg-divider';
+        div.textContent = formatDMDay(m.ts);
+        box.appendChild(div);
+        lastDayKey = dayKey;
+      }
+      const prev = thread.messages[i-1];
+      const next = thread.messages[i+1];
+      const hasPrev = prev && prev.from === m.from && (m.ts - prev.ts) < 5*60*1000;
+      const hasNext = next && next.from === m.from && (next.ts - m.ts) < 5*60*1000;
+      appendDMBubbleRow(m.from, m.text, char, { hasPrev, hasNext });
+    });
+  }
+
+  function formatDMDay(ts) {
+    const d = new Date(ts);
+    const today = new Date();
+    const sameDay = d.toDateString() === today.toDateString();
+    if (sameDay) return '오늘 ' + d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+    const yest = new Date(today); yest.setDate(yest.getDate()-1);
+    if (d.toDateString() === yest.toDateString()) return '어제';
+    return `${d.getMonth()+1}월 ${d.getDate()}일`;
+  }
+
+  function appendDMBubbleRow(who, text, char, opts = {}) {
+    const box = document.getElementById('dmMessages');
+    if (!box) return;
+    const row = document.createElement('div');
+    row.className = 'dm-msg-row ' + (who === 'me' ? 'me' : 'them');
+    const bubble = document.createElement('div');
+    bubble.className = 'dm-msg ' + (who === 'me' ? 'me' : 'them');
+    if (opts.hasPrev) bubble.classList.add('has-prev');
+    if (opts.hasNext) bubble.classList.add('has-next');
+    bubble.textContent = text;
+
+    if (who === 'them' && char) {
+      const av = document.createElement('div');
+      av.className = 'dm-msg-row-avatar' + (opts.hasNext ? ' hidden' : '');
+      av.innerHTML = `<img src="${char.img}" alt="${char.id}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'${char.emoji}'}))">`;
+      row.appendChild(av);
+    }
+    row.appendChild(bubble);
+    box.appendChild(row);
+  }
+
+  function closeDMChat() {
+    _openDMCharId = null;
+    document.getElementById('dmChatView').classList.remove('open');
+    document.getElementById('dmListView').style.display = '';
+    document.body.classList.remove('dm-chat-open');
+    renderDMList();
+  }
+
+  function appendDMBubble(who, text, scroll = true) {
+    rerenderDMMessages();
+    if (scroll) {
+      const box = document.getElementById('dmMessages');
+      if (box) box.scrollTop = box.scrollHeight;
+    }
+  }
+
+  async function sendUserDM() {
+    const input = document.getElementById('dmInput');
+    const text = input.value.trim();
+    if (!text || !_openDMCharId) return;
+    const char = findChar(_openDMCharId);
+    const thread = getThread(_openDMCharId);
+    thread.messages.push({ from: 'me', text, ts: Date.now() });
+    appendDMBubble('me', text);
+    input.value = '';
+    persistState();
+
+    // AI 응답 (캐릭터 톤으로)
+    const delay = 1500 + Math.random() * 2500;
+    setTimeout(async () => {
+      const apiKey = localStorage.getItem('openai_api_key');
+      let reply = null;
+      if (apiKey && char.systemPrompt) {
+        const tone = char.replyProfile?.tone || '';
+        const history = thread.messages.slice(-6).map(m => `${m.from === 'me' ? 'princess_chae' : char.id}: ${m.text}`).join('\n');
+        const sys = char.systemPrompt + `\n[추가 지시 — DM 대화]\n친구와 1:1 DM을 주고받는 상황. 톤: ${tone}\n- 한 줄, 최대 50자\n- 따옴표 금지, 자연스러운 친구 톤`;
+        try {
+          const res = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+            body: JSON.stringify({
+              model: 'gpt-4o-mini',
+              messages: [
+                { role: 'system', content: sys },
+                { role: 'user', content: `최근 대화:\n${history}\n\n위 흐름에 이어 너의 다음 답장을 써. 본문만.` }
+              ],
+              temperature: 0.95,
+              max_tokens: 60
+            })
+          });
+          if (res.ok) {
+            const data = await res.json();
+            reply = (data.choices?.[0]?.message?.content || '').trim().replace(/^["'`「」]+|["'`「」]+$/g,'');
+            if (reply.length > 60) reply = reply.slice(0,60).replace(/\s+\S*$/,'') + '…';
+          }
+        } catch(e) {}
+      }
+      if (!reply) reply = pickReplyTemplate(char);
+      thread.messages.push({ from: 'them', text: reply, ts: Date.now() });
+      if (_openDMCharId === char.id) appendDMBubble('them', reply);
+      persistState();
+    }, delay);
+  }
 
   function rand(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -1345,6 +2136,7 @@
 
     const tags = analyzePost(text);
     const postId = 'post_' + (++postCount);
+    POST_TEXTS[postId] = text;
     const feed = document.getElementById('dynamicFeed');
     const hasApiKey = !!localStorage.getItem('openai_api_key');
     const attachedImage = pendingPostImage;
@@ -1379,12 +2171,20 @@
       ${mediaHtml}
       <div class="post-actions">
         <button class="action-btn" onclick="toggleLike(this, '${postId}')">🤍</button>
-        <button class="action-btn">💬</button>
-        <button class="action-btn">📤</button>
+        <button class="action-btn" onclick="focusMyPostComment('${postId}')">💬</button>
         <span style="margin-left:auto;font-size:18px;">🔖</span>
       </div>
       <div class="likes-count" id="${postId}_likes">좋아요 0개</div>
       <div class="comments" id="${postId}_comments"></div>
+      <div style="display:flex;gap:8px;padding:10px 16px;border-top:1px solid #f3e3ec;align-items:center;">
+        <div class="comment-avatar" style="width:28px;height:28px;">${avatarHtml(myProfile)}</div>
+        <input type="text" id="${postId}_userCommentInput"
+          placeholder="댓글 달기..."
+          onkeydown="if(event.key==='Enter')submitMyPostComment('${postId}')"
+          style="flex:1;border:none;outline:none;background:transparent;font-size:13px;color:#333;">
+        <button onclick="submitMyPostComment('${postId}')"
+          style="background:none;border:none;color:#ec4899;font-weight:700;font-size:13px;cursor:pointer;">게시</button>
+      </div>
     `;
 
     feed.insertBefore(card, feed.firstChild);
@@ -1407,21 +2207,17 @@
           placeholder.remove();
           showToast('AI 이미지 생성 실패 🥲');
         }
+        persistState();
       });
     }
 
     // 좋아요 카운터 시작 (0 → 10초간 점진 증가)
     startLikeCounter(postId);
+    persistState();
 
     // 부정 댓글 0~2개 랜덤 (0이 더 자주 나오도록 가중)
     const negCount = [0, 0, 0, 1, 1, 2][rand(0, 5)];
     const shuffled = [...CHARACTERS].sort(() => Math.random() - 0.5);
-    // curse_princess는 항상 마지막에 등장
-    const curseIdx = shuffled.findIndex(c => c.id === 'curse_princess');
-    if (curseIdx !== -1) {
-      const [curse] = shuffled.splice(curseIdx, 1);
-      shuffled.push(curse);
-    }
     const negCandidates = shuffled.filter(c => c.negativePool && c.negativePool.length > 0);
     const negIds = new Set(negCandidates.slice(0, negCount).map(c => c.id));
 
@@ -1461,20 +2257,385 @@
     if (el) el.remove();
   }
 
+  // ── 댓글 삭제 (DOM 기반) ──
+  function removeClosestComment(el) {
+    const node = el.closest('.comment, .reply');
+    if (node) node.remove();
+    persistState();
+  }
+  function deleteCharPostThreadComment(charId, idx, threadIdx) {
+    const key = `${charId}-${idx}`;
+    const thread = getCharPostThread(key);
+    thread.splice(threadIdx, 1);
+    renderCharPostThread(charId, idx);
+    persistState();
+  }
+
+  // ── 기존(저장돼 있던) 내 게시글 마이그레이션: 📤 제거 + 💬 기능 + 입력바 ──
+  function migrateExistingMyPosts() {
+    const feed = document.getElementById('dynamicFeed');
+    if (!feed) return;
+    let changed = false;
+    feed.querySelectorAll('.post-card').forEach(card => {
+      const postId = card.id;
+      if (!postId) return;
+      card.querySelectorAll('.post-actions .action-btn').forEach(btn => {
+        const t = btn.textContent.trim();
+        if (t === '📤') { btn.remove(); changed = true; }
+        else if (t === '💬' && !btn.getAttribute('onclick')) {
+          btn.setAttribute('onclick', `focusMyPostComment('${postId}')`);
+          changed = true;
+        }
+      });
+      if (!card.querySelector(`#${postId}_userCommentInput`)) {
+        const bar = document.createElement('div');
+        bar.style.cssText = 'display:flex;gap:8px;padding:10px 16px;border-top:1px solid #f3e3ec;align-items:center;';
+        bar.innerHTML = `
+          <div class="comment-avatar" style="width:28px;height:28px;">${avatarHtml(myProfile)}</div>
+          <input type="text" id="${postId}_userCommentInput" placeholder="댓글 달기..." onkeydown="if(event.key==='Enter')submitMyPostComment('${postId}')" style="flex:1;border:none;outline:none;background:transparent;font-size:13px;color:#333;">
+          <button onclick="submitMyPostComment('${postId}')" style="background:none;border:none;color:#ec4899;font-weight:700;font-size:13px;cursor:pointer;">게시</button>
+        `;
+        card.appendChild(bar);
+        changed = true;
+      }
+    });
+    // 기존 댓글들에 삭제 버튼 추가
+    feed.querySelectorAll('.comment .comment-time, .reply .comment-time').forEach(timeEl => {
+      if (!timeEl.querySelector('.comment-delete')) {
+        const del = document.createElement('span');
+        del.className = 'comment-delete';
+        del.setAttribute('onclick', 'removeClosestComment(this)');
+        del.textContent = '삭제';
+        timeEl.appendChild(del);
+        changed = true;
+      }
+    });
+    if (changed) persistState();
+  }
+
+  // ── 댓글 입력 포커스 / 내 게시글 댓글 ──
+  function focusMyPostComment(postId) {
+    const inp = document.getElementById(`${postId}_userCommentInput`);
+    if (inp) inp.focus();
+  }
+  function focusCharPostComment(charId, idx) {
+    const safeKey = (charId+'-'+idx).replace(/[^a-zA-Z0-9_-]/g,'_');
+    const inp = document.getElementById(`cpc_input_${safeKey}`);
+    if (inp) inp.focus();
+  }
+  function submitMyPostComment(postId) {
+    const input = document.getElementById(`${postId}_userCommentInput`);
+    if (!input) return;
+    const text = input.value.trim();
+    if (!text) return;
+    const container = document.getElementById(`${postId}_comments`);
+    if (!container) return;
+    const cid = `cmt_${++_commentSeq}`;
+    const el = document.createElement('div');
+    el.className = 'comment';
+    el.id = cid;
+    el.innerHTML = `
+      <div class="comment-avatar">${avatarHtml(myProfile)}</div>
+      <div class="comment-body">
+        <span class="comment-name">${escHtml(myProfile.username)} </span>
+        <span class="comment-text">${escHtml(text)}</span>
+        <div class="comment-time">방금 전<span class="comment-delete" onclick="removeClosestComment(this)">삭제</span></div>
+      </div>
+    `;
+    container.appendChild(el);
+    input.value = '';
+    persistState();
+
+    // 캐릭터 중 한 명이 답글 (60% 확률, 랜덤 캐릭터)
+    if (Math.random() < 0.6) {
+      const char = CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
+      const postText = POST_TEXTS[postId] || '';
+      setTimeout(async () => {
+        let reply = null;
+        try { reply = await generateCommentReply(char, postText, text); } catch(e) {}
+        if (!reply) reply = pickReplyTemplate(char, text);
+        // 내 댓글에 대한 답글 형태로 추가
+        const rid = `cmt_${++_commentSeq}`;
+        const rEl = document.createElement('div');
+        rEl.className = 'comment';
+        rEl.id = rid;
+        rEl.innerHTML = `
+          <div class="comment-avatar"><img src="${char.img}" alt="${char.id}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'${char.emoji}'}))"></div>
+          <div class="comment-body">
+            <span class="comment-name">${char.id} </span>
+            <span class="comment-text">${escHtml(reply)}</span>
+            <div class="comment-time">방금 전<span class="comment-delete" onclick="removeClosestComment(this)">삭제</span></div>
+          </div>
+        `;
+        container.appendChild(rEl);
+        persistState();
+      }, 1500 + Math.random() * 2000);
+    }
+  }
+
+  // ── Post text store (for reply context) ──
+  const POST_TEXTS = {};
+  // 캐릭터 게시글에 내가 단 댓글 + 캐릭터의 답글 저장
+  const CHAR_POST_THREADS = {}; // key "charId-idx" → [{from:'me'|'char', text, ts}]
+  function getCharPostThread(key) {
+    if (!CHAR_POST_THREADS[key]) CHAR_POST_THREADS[key] = [];
+    return CHAR_POST_THREADS[key];
+  }
+  function renderCharPostThread(charId, idx) {
+    const key = `${charId}-${idx}`;
+    const safeKey = key.replace(/[^a-zA-Z0-9_-]/g,'_');
+    const list = document.getElementById(`cpc_list_${safeKey}`);
+    if (!list) return;
+    const thread = getCharPostThread(key);
+    const char = findChar(charId);
+    list.innerHTML = thread.map((c, tIdx) => {
+      const isMe = c.from === 'me';
+      const avatar = isMe
+        ? `<div class="comment-avatar">${avatarHtml(myProfile)}</div>`
+        : `<div class="comment-avatar"><img src="${char?.img}" alt="${charId}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'${char?.emoji||'💗'}'}))"></div>`;
+      const name = isMe ? escHtml(myProfile.username) : charId;
+      const replies = c.replies || [];
+      const repliesHtml = replies.length ? `
+        <div class="replies">
+          ${replies.map((r, rIdx) => {
+            const rIsMe = r.from === 'me';
+            const rAvatar = rIsMe
+              ? `<div class="comment-avatar">${avatarHtml(myProfile)}</div>`
+              : `<div class="comment-avatar"><img src="${char?.img}" alt="${charId}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'${char?.emoji||'💗'}'}))"></div>`;
+            const rName = rIsMe ? escHtml(myProfile.username) : charId;
+            return `
+              <div class="reply${rIsMe ? ' me' : ''}">
+                ${rAvatar}
+                <div class="comment-body">
+                  <span class="comment-name">${rName} </span>
+                  <span class="comment-text">${escHtml(r.text)}</span>
+                  <div class="comment-time">방금 전<span class="comment-delete" onclick="deleteCharPostThreadReply('${charId}',${idx},${tIdx},${rIdx})">삭제</span></div>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      ` : '';
+      return `
+        <div class="comment">
+          ${avatar}
+          <div class="comment-body">
+            <span class="comment-name">${name} </span>
+            <span class="comment-text">${escHtml(c.text)}</span>
+            <div class="comment-time">방금 전<span class="comment-delete" onclick="deleteCharPostThreadComment('${charId}',${idx},${tIdx})">삭제</span></div>
+            ${repliesHtml}
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function deleteCharPostThreadReply(charId, idx, tIdx, rIdx) {
+    const thread = getCharPostThread(`${charId}-${idx}`);
+    if (!thread[tIdx] || !thread[tIdx].replies) return;
+    thread[tIdx].replies.splice(rIdx, 1);
+    renderCharPostThread(charId, idx);
+    persistState();
+  }
+  async function submitCharPostComment(charId, idx) {
+    const key = `${charId}-${idx}`;
+    const safeKey = key.replace(/[^a-zA-Z0-9_-]/g,'_');
+    const input = document.getElementById(`cpc_input_${safeKey}`);
+    if (!input) return;
+    const text = input.value.trim();
+    if (!text) return;
+    const thread = getCharPostThread(key);
+    thread.push({ from: 'me', text, ts: Date.now() });
+    const tIdx = thread.length - 1;
+    input.value = '';
+    renderCharPostThread(charId, idx);
+    persistState();
+
+    // 60% 확률로 공주가 답글 — 메인 화면의 .reply 들여쓰기 스타일로 내 댓글 아래에 추가
+    if (Math.random() < 0.6) {
+      const char = findChar(charId);
+      const post = CHARACTER_PROFILES[charId]?.posts[idx];
+      if (!char) return;
+      setTimeout(async () => {
+        let reply = null;
+        try {
+          const apiKey = localStorage.getItem('openai_api_key');
+          if (apiKey && char.systemPrompt) {
+            const tone = char.replyProfile?.tone || '';
+            const sys = char.systemPrompt + `\n[추가 지시 — 자기 게시글 댓글 답글 모드]\n친구 princess_chae가 너의 게시글에 댓글을 달았어. 너는 게시글 작성자로서 짧게 반응해. 톤: ${tone}\n- 한 줄, 최대 50자\n- 본문만, 따옴표 금지`;
+            const res = await fetch('https://api.openai.com/v1/chat/completions', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+              body: JSON.stringify({
+                model: 'gpt-4o-mini',
+                messages: [
+                  { role: 'system', content: sys },
+                  { role: 'user', content: `너의 게시글: "${post?.caption || ''}"\nprincess_chae 댓글: "${text}"\n위 댓글에 답글을 써. 본문만.` }
+                ],
+                temperature: 0.95,
+                max_tokens: 60
+              })
+            });
+            if (res.ok) {
+              const data = await res.json();
+              reply = (data.choices?.[0]?.message?.content || '').trim().replace(/^["'`「」]+|["'`「」]+$/g,'');
+              if (reply.length > 60) reply = reply.slice(0,60).replace(/\s+\S*$/,'') + '…';
+            }
+          }
+        } catch(e){}
+        if (!reply) reply = pickReplyTemplate(char);
+        if (!thread[tIdx]) return;
+        if (!thread[tIdx].replies) thread[tIdx].replies = [];
+        thread[tIdx].replies.push({ from: 'char', text: reply, ts: Date.now() });
+        renderCharPostThread(charId, idx);
+        persistState();
+      }, 1500 + Math.random() * 2500);
+    }
+  }
+  let _commentSeq = 0;
+
+  // ── 영구 저장 (localStorage) ──
+  const STORAGE_KEY = 'princessgram_state_v1';
+  let _saveTimer = null;
+  function _doPersist() {
+    try {
+      const feed = document.getElementById('dynamicFeed');
+      const emptyHint = document.getElementById('emptyHint');
+      const data = {
+        feedHtml: feed ? feed.innerHTML : '',
+        postTexts: POST_TEXTS,
+        postCount: typeof postCount !== 'undefined' ? postCount : 0,
+        commentSeq: _commentSeq,
+        dmThreads: DM_THREADS,
+        charPostThreads: CHAR_POST_THREADS,
+        emptyHintHidden: emptyHint ? emptyHint.style.display === 'none' : false
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      console.log('[persist] saved', Object.keys(data));
+    } catch (e) { console.warn('[persist] failed', e); }
+  }
+  function persistState() {
+    clearTimeout(_saveTimer);
+    _saveTimer = setTimeout(_doPersist, 200);
+  }
+  function flushPersist() {
+    if (_saveTimer) { clearTimeout(_saveTimer); _saveTimer = null; }
+    _doPersist();
+  }
+  window.addEventListener('beforeunload', flushPersist);
+  window.addEventListener('pagehide', flushPersist);
+  function restoreState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      const feed = document.getElementById('dynamicFeed');
+      if (feed && data.feedHtml) feed.innerHTML = data.feedHtml;
+      if (data.postTexts) Object.assign(POST_TEXTS, data.postTexts);
+      if (typeof data.postCount === 'number') postCount = data.postCount;
+      if (typeof data.commentSeq === 'number') _commentSeq = data.commentSeq;
+      if (data.dmThreads) Object.assign(DM_THREADS, data.dmThreads);
+      if (data.charPostThreads) Object.assign(CHAR_POST_THREADS, data.charPostThreads);
+      const emptyHint = document.getElementById('emptyHint');
+      if (emptyHint && data.emptyHintHidden) emptyHint.style.display = 'none';
+      updateDMBadge();
+    } catch (e) { console.warn('restore failed', e); }
+  }
+
   function addComment(postId, char, text, elapsedSec) {
     const container = document.getElementById(`${postId}_comments`);
     if (!container) return;
+    const cid = `cmt_${++_commentSeq}`;
     const el = document.createElement('div');
     el.className = 'comment';
+    el.id = cid;
     el.innerHTML = `
       <div class="comment-avatar"><img src="${char.img}" alt="${char.id}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'${char.emoji}'}))"></div>
       <div class="comment-body">
         <span class="comment-name">${char.id} </span>
         <span class="comment-text">${escHtml(text)}</span>
-        <div class="comment-time">${timeAgo(Math.round(elapsedSec))}</div>
+        <div class="comment-time">${timeAgo(Math.round(elapsedSec))}<span class="comment-delete" onclick="removeClosestComment(this)">삭제</span></div>
+        <button class="reply-btn" onclick="openReplyInput('${postId}','${cid}','${char.id}')">답글 달기</button>
+        <div class="reply-input-wrap" id="${cid}_replyWrap">
+          <input type="text" id="${cid}_replyInput" placeholder="@${char.id} 에게 답글..." onkeydown="if(event.key==='Enter')submitReply('${postId}','${cid}','${char.id}')">
+          <button onclick="submitReply('${postId}','${cid}','${char.id}')">등록</button>
+        </div>
+        <div class="replies" id="${cid}_replies"></div>
       </div>
     `;
     container.appendChild(el);
+    persistState();
+  }
+
+  function openReplyInput(postId, cid, charId) {
+    const wrap = document.getElementById(`${cid}_replyWrap`);
+    if (!wrap) return;
+    wrap.classList.toggle('open');
+    if (wrap.classList.contains('open')) {
+      document.getElementById(`${cid}_replyInput`)?.focus();
+    }
+  }
+
+  function findChar(charId) {
+    return CHARACTERS.find(c => c.id === charId);
+  }
+
+  function appendReplyToThread(cid, who, text, charObj) {
+    const wrap = document.getElementById(`${cid}_replies`);
+    if (!wrap) return;
+    const el = document.createElement('div');
+    el.className = 'reply' + (who === 'me' ? ' me' : '');
+    const avatar = who === 'me'
+      ? `<div class="comment-avatar">${avatarHtml(myProfile)}</div>`
+      : `<div class="comment-avatar"><img src="${charObj.img}" alt="${charObj.id}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'${charObj.emoji}'}))"></div>`;
+    const name = who === 'me' ? escHtml(myProfile.username) : charObj.id;
+    el.innerHTML = `
+      ${avatar}
+      <div class="comment-body">
+        <span class="comment-name">${name} </span>
+        <span class="comment-text">${escHtml(text)}</span>
+        <div class="comment-time">방금 전<span class="comment-delete" onclick="removeClosestComment(this)">삭제</span></div>
+      </div>
+    `;
+    wrap.appendChild(el);
+    persistState();
+  }
+
+  function submitReply(postId, cid, charId) {
+    console.log('[reply] submitReply', { postId, cid, charId });
+    const input = document.getElementById(`${cid}_replyInput`);
+    if (!input) { console.warn('[reply] no input'); return; }
+    const text = input.value.trim();
+    if (!text) { console.warn('[reply] empty'); return; }
+    const char = findChar(charId);
+    if (!char) { console.warn('[reply] no char', charId); return; }
+    appendReplyToThread(cid, 'me', text, null);
+    input.value = '';
+    document.getElementById(`${cid}_replyWrap`).classList.remove('open');
+
+    const postText = POST_TEXTS[postId] || '';
+    const inlineProb = (char.replyProfile && char.replyProfile.inlineReplyChance) ?? 0.45;
+    const rollInline = Math.random() < inlineProb;
+    console.log('[reply] decision', char.id, 'inlineProb=', inlineProb, 'rollInline=', rollInline);
+
+    if (rollInline) {
+      const delay = 1500 + Math.random() * 1500;
+      console.log('[reply] inline reply in', delay, 'ms');
+      setTimeout(async () => {
+        let reply;
+        try { reply = await generateCommentReply(char, postText, text); }
+        catch (e) { console.warn('[reply] gen err', e); }
+        if (!reply) reply = pickReplyTemplate(char, text);
+        console.log('[reply] inline appending:', reply);
+        appendReplyToThread(cid, 'them', reply, char);
+      }, delay);
+    } else {
+      const delay = 2500 + Math.random() * 2500;
+      console.log('[reply] DM in', delay, 'ms');
+      setTimeout(() => {
+        sendDMFromChar(char, { postText, userReply: text, kind: 'after_reply' });
+      }, delay);
+    }
   }
 
   function toggleLike(btn, postId) {
@@ -1488,6 +2649,7 @@
       btn.textContent = '🤍';
       likesEl.textContent = `좋아요 ${Math.max(0, n - 1)}개`;
     }
+    persistState();
   }
 
   function escHtml(str) {
@@ -1498,6 +2660,9 @@
   function hideAllPages() {
     document.getElementById('homePage').style.display = 'none';
     document.getElementById('messengerPage').classList.remove('open');
+    document.getElementById('dmChatView')?.classList.remove('open');
+    document.body.classList.remove('dm-chat-open');
+    _openDMCharId = null;
     document.getElementById('profilePage').classList.remove('open');
     document.getElementById('profileEditPage').classList.remove('open');
     document.getElementById('characterProfilePage').classList.remove('open');
@@ -1506,6 +2671,12 @@
   function goMessenger() {
     hideAllPages();
     document.getElementById('messengerPage').classList.add('open');
+    document.getElementById('dmChatView').classList.remove('open');
+    document.getElementById('dmListView').style.display = '';
+    _openDMCharId = null;
+    const headerName = document.getElementById('dmHeaderUsername');
+    if (headerName) headerName.textContent = myProfile.username || 'princess_chae';
+    renderDMList();
   }
   function goHome() {
     hideAllPages();
@@ -1538,7 +2709,7 @@
       ]
     },
     ruby_: {
-      name: 'rubyRuby 비비', img: 'assets/ruby_/ruby_profile/ruby.png', grade: '❤️', friends: 102,
+      name: 'rubyRuby 비비', img: 'assets/ruby_/ruby_profile/ruby.png', grade: '❤️', friends: 1366,
       bio: '반짝이는 루비처럼 빛나는 순간들 ❤️\nShining like a ruby, every moment',
       theme: ['#fecaca', '#dc2626'],
       posts: [
@@ -1600,15 +2771,6 @@
         { emoji: '🕯️', image: 'assets/pearl_/pearl_a/pearl_a1.png',
           caption: '"A pearl is a beautiful thing that is produced by an injured life."\n— Stephan Hoeller 🕯️🐚' }
       ]
-    },
-    curse_princess: {
-      name: 'curse 저주공주', img: 'assets/curse.png', grade: '🖤', friends: 13,
-      bio: '세상은 원래 쓴맛 🖤\nBittersweet kingdom',
-      theme: ['#1f2937', '#6b7280'],
-      posts: [
-        { emoji: '🖤', caption: '기대 안 하면 실망도 없어 🖤 진리임' },
-        { emoji: '🥀', caption: '시든 장미가 더 솔직해 🥀 화려한 거짓보단 낫지' }
-      ]
     }
   };
 
@@ -1617,8 +2779,7 @@
     ruby_: ['너무 예뻐 진짜 💎','이 분위기 미쳤다 ❤️ 좋아요 백 개','반짝반짝 빛난다 👠','드레스 어디서 샀어?? 알려줘🌹','오늘도 여신 인증 ❤️'],
     lily_princess: ['따뜻한 느낌이 좋다 🤍','보고 있으면 마음이 차분해져 🌙','너답다 진짜 🥺💐','오늘도 좋은 하루 보내 ✨','이 사진 너무 곱다 🤍'],
     sora_diary: ['자유로워 보여서 부러워 ☁️','나도 데려가줘 🪁','이 풍경 미쳤다 🌈','보기만 해도 시원해진다 🌊','너 보면 항상 에너지 받아 🦋'],
-    pearl_diary: ['신비로운 분위기 진짜 좋다 🐚','감성 미쳤어 💙','너만 찍을 수 있는 사진이야 🧜‍♀️','한참 보게 된다 🦪','잔잔한 게 더 예뻐 🐚'],
-    curse_princess: ['흠... 나쁘진 않네 🖤','드물게 마음에 든다 🥀','이 정도면 봐줄만 🕯️','진심이라 더 좋아 🖤','솔직해서 좋네 🗡️']
+    pearl_diary: ['신비로운 분위기 진짜 좋다 🐚','감성 미쳤어 💙','너만 찍을 수 있는 사진이야 🧜‍♀️','한참 보게 된다 🦪','잔잔한 게 더 예뻐 🐚']
   };
 
   function shuffle(arr) {
@@ -1677,21 +2838,12 @@
     });
   }
 
-  function goCharacterPost(charId, idx) {
-    const p = CHARACTER_PROFILES[charId];
-    if (!p || !p.posts[idx]) return;
-    const post = p.posts[idx];
-    hideAllPages();
-    const page = document.getElementById('characterPostPage');
-    page.classList.add('open');
+  function renderCharPostCard(charId, post, i, p) {
     const [c1, c2] = p.theme;
     const comments = randomCommentsFor(charId);
-    page.innerHTML = `
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-        <button onclick="goCharacterProfile('${charId}')" style="background:none;border:none;font-size:22px;cursor:pointer;color:#d4548a;">←</button>
-        <span style="font-weight:600;color:#333;">게시물</span>
-      </div>
-      <div class="post-card post-border">
+    const safeId = (charId+'-'+i).replace(/[^a-zA-Z0-9_-]/g,'_');
+    return `
+      <div class="post-card post-border" id="charPost_${charId}_${i}" style="margin-bottom:16px;">
         <div class="post-top">
           <div class="post-avatar"><img src="${p.img}" alt="${charId}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;"></div>
           <div class="post-info">
@@ -1708,7 +2860,7 @@
               <button onclick="carouselMove(this,-1,${post.images.length})" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.85);border:none;width:32px;height:32px;border-radius:50%;font-size:18px;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,0.2);">‹</button>
               <button onclick="carouselMove(this,1,${post.images.length})" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.85);border:none;width:32px;height:32px;border-radius:50%;font-size:18px;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,0.2);">›</button>
               <div class="carousel-dots" data-idx="0" style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;">
-                ${post.images.map((_,i) => `<span style="width:6px;height:6px;border-radius:50%;background:${i===0?'#fff':'rgba(255,255,255,0.5)'};box-shadow:0 1px 2px rgba(0,0,0,0.3);"></span>`).join('')}
+                ${post.images.map((_,k) => `<span style="width:6px;height:6px;border-radius:50%;background:${k===0?'#fff':'rgba(255,255,255,0.5)'};box-shadow:0 1px 2px rgba(0,0,0,0.3);"></span>`).join('')}
               </div>
             </div>`
           : post.image
@@ -1716,10 +2868,9 @@
             : `<div class="post-image" style="background:linear-gradient(135deg,${c1},${c2});display:flex;align-items:center;justify-content:center;font-size:120px;aspect-ratio:1/1;">${post.emoji}</div>`}
         <div class="post-actions">
           <button class="action-btn">🤍</button>
-          <button class="action-btn">💬</button>
-          <button class="action-btn">📤</button>
+          <button class="action-btn" onclick="focusCharPostComment('${charId}',${i})">💬</button>
         </div>
-        <div class="likes-count">좋아요 ${Math.floor(Math.random()*200)+30}개</div>
+        <div class="likes-count">좋아요 ${charId === 'ruby_' ? (Math.floor(Math.random()*701)+100) : (Math.floor(Math.random()*200)+30)}개</div>
         <div class="comments">
           ${comments.map(c => `
             <div class="comment">
@@ -1727,13 +2878,41 @@
               <div class="comment-body">
                 <span class="comment-name">${c.id}</span>
                 <span class="comment-text">${escHtml(c.text)}</span>
-                <div class="comment-time">${c.time}분 전</div>
+                <div class="comment-time">${c.time}분 전<span class="comment-delete" onclick="removeClosestComment(this)">삭제</span></div>
               </div>
             </div>
           `).join('')}
+          <div id="cpc_list_${safeId}"></div>
+        </div>
+        <div style="display:flex;gap:8px;padding:10px 16px;border-top:1px solid #f3e3ec;background:#fff;align-items:center;">
+          <div class="comment-avatar" style="width:28px;height:28px;">${avatarHtml(myProfile)}</div>
+          <input type="text" id="cpc_input_${safeId}"
+            placeholder="댓글 달기..."
+            onkeydown="if(event.key==='Enter')submitCharPostComment('${charId}',${i})"
+            style="flex:1;border:none;outline:none;background:transparent;font-size:13px;color:#333;">
+          <button onclick="submitCharPostComment('${charId}',${i})"
+            style="background:none;border:none;color:#ec4899;font-weight:700;font-size:13px;cursor:pointer;">게시</button>
         </div>
       </div>
     `;
+  }
+
+  function goCharacterPost(charId, idx) {
+    const p = CHARACTER_PROFILES[charId];
+    if (!p || !p.posts[idx]) return;
+    hideAllPages();
+    const page = document.getElementById('characterPostPage');
+    page.classList.add('open');
+    page.innerHTML = `
+      <div style="position:sticky;top:48px;z-index:50;display:flex;align-items:center;gap:10px;background:#fff;border-bottom:1px solid #f3e3ec;padding:12px 16px;margin:-16px -16px 12px;">
+        <button onclick="goCharacterProfile('${charId}')" style="background:none;border:none;font-size:22px;cursor:pointer;color:#d4548a;">←</button>
+        <span style="font-weight:600;color:#333;">게시물</span>
+      </div>
+      ${p.posts.map((post, i) => renderCharPostCard(charId, post, i, p)).join('')}
+    `;
+    p.posts.forEach((_, i) => renderCharPostThread(charId, i));
+    const target = document.getElementById(`charPost_${charId}_${idx}`);
+    if (target) target.scrollIntoView({block:'start'});
   }
 
   function carouselMove(btn, dir, total) {
@@ -1977,10 +3156,12 @@
   function deletePost(postId) {
     const card = document.getElementById(postId);
     if (card) card.remove();
+    delete POST_TEXTS[postId];
     const feed = document.getElementById('dynamicFeed');
     if (feed && !feed.children.length) {
       document.getElementById('emptyHint').style.display = '';
     }
+    persistState();
   }
 
   function pinPost(postId) {
@@ -2003,10 +3184,13 @@
       feed.insertBefore(card, feed.firstChild);
     }
     document.getElementById(`${postId}_menu`)?.classList.remove('open');
+    persistState();
   }
 
   // Initial render
   renderMyProfile();
+  restoreState();
+  migrateExistingMyPosts();
 
   // Emoji quick insert
   document.querySelectorAll('.write-emojis span').forEach(span => {
