@@ -1,3 +1,10 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(open *)",
+      "Bash(node *)",
+      "Bash(grep -n \"comment-time\\\\\">방금 전\\\\|comment-time\\\\\">.*분 전\\\\|comment-time\\\\\">.*시간 전\\\\|comment-time\\\\\">.*초 전\\\\|comment-time\\\\\">\\\\${timeAgo\\\\|comment-time\\\\\">\\\\${c\\\\.time\" project/princessgram/index.html)"
+    ]
+  },
   "outputStyle": "default"
 }
